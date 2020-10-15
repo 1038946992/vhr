@@ -5,7 +5,7 @@ public class Role {
 
     private String name;
 
-    private String namezh;
+    private String nameZh;
 
     public Integer getId() {
         return id;
@@ -20,15 +20,15 @@ public class Role {
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
 
-    public String getNamezh() {
-        return namezh;
+    public String getNameZh() {
+        return nameZh;
     }
 
-    public void setNamezh(String namezh) {
-        this.namezh = namezh == null ? null : namezh.trim();
+    public void setNameZh(String nameZh) {
+        this.nameZh = nameZh;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class Role {
         return "Role{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", namezh='" + namezh + '\'' +
+                ", nameZh='" + nameZh + '\'' +
                 '}';
     }
 }

@@ -17,20 +17,20 @@
     </resultMap>
 
     <resultMap id="Menu2" type="com.kkk.model.Menu" extends="BaseResultMap">
-      <collection property="children" ofType="com.kkk.model.Menu">
-        <id column="id2" property="id" jdbcType="INTEGER"/>
-        <result column="url2" property="url" jdbcType="VARCHAR"/>
-        <result column="path2" property="path" jdbcType="VARCHAR"/>
-        <result column="component2" property="component" jdbcType="VARCHAR"/>
-        <result column="name2" property="name" jdbcType="VARCHAR"/>
-        <result column="iconCls2" property="iconCls" jdbcType="VARCHAR"/>
-        <result column="parentId2" property="parentId" jdbcType="INTEGER"/>
-        <result column="enabled2" property="enabled" jdbcType="BIT"/>
-        <association property="meta" javaType="com.kkk.model.Meta">
-          <result column="keepAlive2" property="keepAlive"></result>
-          <result column="requireAuth2" property="requireAuth"></result>
-        </association>
-      </collection>
+        <collection property="children" ofType="com.kkk.model.Menu">
+            <id column="id2" property="id" jdbcType="INTEGER"/>
+            <result column="url2" property="url" jdbcType="VARCHAR"/>
+            <result column="path2" property="path" jdbcType="VARCHAR"/>
+            <result column="component2" property="component" jdbcType="VARCHAR"/>
+            <result column="name2" property="name" jdbcType="VARCHAR"/>
+            <result column="iconCls2" property="iconCls" jdbcType="VARCHAR"/>
+            <result column="parentId2" property="parentId" jdbcType="INTEGER"/>
+            <result column="enabled2" property="enabled" jdbcType="BIT"/>
+            <association property="meta" javaType="com.kkk.model.Meta">
+                <result column="keepAlive2" property="keepAlive"></result>
+                <result column="requireAuth2" property="requireAuth"></result>
+            </association>
+        </collection>
     </resultMap>
 
     <select id="getMenuByHrId" resultMap="Menu2">
@@ -61,6 +61,30 @@
     AND
         m2.`enabled` = 1
     ORDER BY m1.`id`,m2.`id`
+  </select>
+
+  <resultMap id="MenuWithRole" type="com.kkk.model.Menu" extends="BaseResultMap">
+      <collection property="roles" ofType="com.kkk.model.Role">
+          <id column="rid" property="id"></id>
+          <result column="rname" property="name"></result>
+          <result column="rnameZh" property="nameZh"></result>
+      </collection>
+  </resultMap>
+  <select id="getAllMenuWithRole" resultMap="MenuWithRole">
+    SELECT
+        m.*,
+        r.`id` rid,
+        r.`name` rname,
+        r.`nameZh` rnameZh
+    FROM
+        menu m,
+        menu_role mr,
+        role r
+    WHERE
+        m.`id` = mr.`mid`
+    AND
+        r.`id` = mr.`rid`
+    ORDER BY m.`id`
   </select>
 
     <sql id="Base_Column_List">

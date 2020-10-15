@@ -22,4 +22,12 @@ public class MenuService {
     public List<Menu> getMenuByHrId(Integer id) {
         return menuMapper.getMenuByHrId(id);
     }
+
+    /**
+     * 获取所有的菜单列表
+     * @return
+     */
+    public List<Menu> getAllMenuWithRole(){
+        return menuMapper.getAllMenuWithRole();
+    }
 }

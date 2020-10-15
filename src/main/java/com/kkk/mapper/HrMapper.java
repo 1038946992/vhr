@@ -1,6 +1,9 @@
 package com.kkk.mapper;
 
 import com.kkk.model.Hr;
+import com.kkk.model.Role;
+
+import java.util.List;
 
 public interface HrMapper {
     int deleteByPrimaryKey(Integer id);
@@ -16,4 +19,6 @@ public interface HrMapper {
     int updateByPrimaryKey(Hr record);
 
     Hr selectHrByUsername(String username);
+
+    List<Role> getHrRolesById(Integer id);
 }
